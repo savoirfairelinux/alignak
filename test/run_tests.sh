@@ -12,7 +12,7 @@ python -V
 cd test
 pip freeze  # so to help eventual debug: know what exact versions are in use can be rather useful.
 
-nosetests -xv --process-restartworker --processes=1 --process-timeout=300  --with-coverage --cover-package=alignak
+python -m nose -xv --process-restartworker --processes=1 --process-timeout=300  --with-coverage --cover-package=alignak
 
 coverage combine
 

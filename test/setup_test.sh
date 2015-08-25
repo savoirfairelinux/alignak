@@ -24,18 +24,6 @@ BASE_PATH=$(dirname "$THIS_PATH")
 
 cd $BASE_PATH
 
-pip install --upgrade pip
-
-# install prog AND tests requirements :
-pip install -e .
-pip install -r test/requirements.txt
-
-pyversion=$(python -c "import sys; print(''.join(map(str, sys.version_info[:2])))")
-if test -e "test/requirements.py${pyversion}.txt"
-then
-    pip install -r "test/requirements.py${pyversion}.txt"
-fi
-
 ###############################################################################
 # We requires pypy-2.6.0
 
@@ -49,3 +37,18 @@ if [[ "${TRAVIS_PYTHON_VERSION}" == "pypy" ]]; then
     pyenv install pypy-2.6.0
     pyenv global pypy-2.6.0
 fi
+
+
+pip install --upgrade pip
+
+# install prog AND tests requirements :
+pip install -e .
+pip install -r test/requirements.txt
+
+pyversion=$(python -c "import sys; print(''.join(map(str, sys.version_info[:2])))")
+if test -e "test/requirements.py${pyversion}.txt"
+then
+    pip install -r "test/requirements.py${pyversion}.txt"
+fi
+
+
