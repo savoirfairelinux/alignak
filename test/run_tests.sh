@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 if [[ "${TRAVIS_PYTHON_VERSION}" == "pypy" ]]; then
     PYENV_ROOT="${HOME}/.pyenv"
