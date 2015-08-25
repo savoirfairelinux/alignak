@@ -14,6 +14,7 @@ install:
 # notice: the nose-cov is used because it is compatible with --processes, but produce a .coverage by process
 # so we must combine them in the end
 script:
+  - python -V
   - cd test
   - touch $(python -c 'import logilab; print(logilab.__path__[0])')/__init__.py
   - pip freeze  # so to help eventual debug: know what exact versions are in use can be rather useful.
