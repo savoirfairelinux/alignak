@@ -30,6 +30,7 @@ cd $BASE_PATH
 # fairly copied from: https://github.com/google/oauth2client/pull/264/files
 
 if [[ "${TRAVIS_PYTHON_VERSION}" == "pypy" ]]; then
+    sudo apt-get install -y pypy pypy-dev
     git clone https://github.com/yyuu/pyenv.git ${HOME}/.pyenv
     PYENV_ROOT="${HOME}/.pyenv"
     PATH="${PYENV_ROOT}/bin:${PATH}"
