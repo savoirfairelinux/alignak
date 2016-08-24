@@ -133,7 +133,7 @@ class Item(AlignakObject):
                 if key in self.properties:
                     val = self.properties[key].pythonize(params[key])
                 elif key in self.running_properties:
-                    warning = "using a the running property %s in a config file" % key
+                    warning = "using the running property %s in a config file" % key
                     self.configuration_warnings.append(warning)
                     val = self.running_properties[key].pythonize(params[key])
                 elif hasattr(self, 'old_properties') and key in self.old_properties:

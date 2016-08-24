@@ -909,7 +909,7 @@ class Config(Item):  # pylint: disable=R0904,R0902
             if key in self.properties:
                 val = self.properties[key].pythonize(clean_params[key])
             elif key in self.running_properties:
-                logger.warning("using a the running property %s in a config file", key)
+                logger.warning("using the running property %s in a config file", key)
                 val = self.running_properties[key].pythonize(clean_params[key])
             elif key.startswith('$') or key in ['cfg_file', 'cfg_dir']:
                 # it's a macro or a useless now param, we don't touch this
