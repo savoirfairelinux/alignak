@@ -280,14 +280,28 @@ class Item(AlignakObject):
 
     __repr__ = __str__
 
-    def is_tpl(self):
+    def is_tpl(self, template_only=False):
         """
         Check if this object is a template
 
+        An object is a template only if its `register` property is not set.
+        Else, it is considered also as a template if it has a `name` property
+
+        If template_only is True it will simply check if the object is registered
+        which is the former Shinken behavior for checking if an object is a template.
+
+        :param template_only:
         :return: True if is a template, else False
         :rtype: bool
         """
-        return not getattr(self, "register", True)
+        registered = getattr(self, "register", True)
+        if template_only:
+            return not registered
+        else:
+            if not registered:
+                return True
+
+            return getattr(self, "name", None) is not None
 
     def fill_default(self):
         """
@@ -770,13 +784,19 @@ class Items(object):
         :type index_items: bool
         :return: None
         """
-        for i in items:
-            if i.is_tpl():
-                self.add_template(i)
+        for item in items:
+            if item.is_tpl(template_only=True):
+                self.add_template(item)
             else:
-                self.add_item(i, index_items)
+                if item.is_tpl():
+                    self.add_template(item)
 
-    def manage_conflict(self, item, name):
+                # If the item is named, it is a real object and not aonly a template
+                name_property = getattr(self.__class__, "name_property", None)
+                if name_property and getattr(item, name_property, ''):
+                    self.add_item(item, index_items)
+
+    def manage_conflict(self, item, name, in_templates=False):
         """
         Checks if an object holding the same name already exists in the index.
 
@@ -793,10 +813,12 @@ class Items(object):
         :type item: object
         :param name: name of the object
         :type name: str
+        :param in_templates: check conflict in templates (else in items)
+        :type name: bool
         :return: 'item' parameter modified
         :rtype: object
         """
-        if item.is_tpl():
+        if in_templates:
             existing = self.name_to_template[name]
         else:
             existing = self.name_to_item[name]
@@ -841,7 +863,9 @@ class Items(object):
         :return: None
         """
         tpl = self.index_template(tpl)
-        self.templates[tpl.uuid] = tpl
+        if tpl:
+            logger.debug("Found a %s template: %s", self.inner_class.my_type, tpl)
+            self.templates[tpl.uuid] = tpl
 
     def index_template(self, tpl):
         """
@@ -855,10 +879,12 @@ class Items(object):
         name = getattr(tpl, 'name', '')
         if not name:
             mesg = "a %s template has been defined without name%s%s" % \
-                   (objcls, tpl.imported_from, self.get_source(tpl))
+                   (objcls, getattr(tpl, 'imported_from', 'unknown'), self.get_source(tpl))
             tpl.configuration_errors.append(mesg)
+            return None
+
         elif name in self.name_to_template:
-            tpl = self.manage_conflict(tpl, name)
+            tpl = self.manage_conflict(tpl, name, in_templates=True)
         self.name_to_template[name] = tpl
         return tpl
 
@@ -947,7 +973,7 @@ class Items(object):
                    (objcls, name_property, self.get_source(item))
             item.configuration_errors.append(mesg)
         elif name in self.name_to_item:
-            item = self.manage_conflict(item, name)
+            item = self.manage_conflict(item, name, in_templates=False)
         self.name_to_item[name] = item
         return item
 

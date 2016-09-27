@@ -1056,10 +1056,16 @@ class Services(SchedulingItems):
 
         # We only index template, service need to apply inheritance first to be able to be indexed
         for item in items:
-            if item.is_tpl():
+            if item.is_tpl(template_only=True):
                 self.add_template(item)
             else:
-                self.items[item.uuid] = item
+                if item.is_tpl():
+                    self.add_template(item)
+
+                #  If the item is named, it is a real object and not only a template
+                name_property = getattr(self.__class__, "name_property", None)
+                if name_property and getattr(item, name_property, ''):
+                    self.items[item.uuid] = item
 
     def add_template(self, tpl):
         """
@@ -1079,8 +1085,10 @@ class Services(SchedulingItems):
             mesg = "a %s template has been defined without name nor " \
                    "host_name%s" % (objcls, self.get_source(tpl))
             tpl.configuration_errors.append(mesg)
+            return None
         elif name:
             tpl = self.index_template(tpl)
+            logger.info("Found a %s template: %s", self.inner_class.my_type, tpl)
         self.templates[tpl.uuid] = tpl
 
     def add_item(self, item, index=True):
