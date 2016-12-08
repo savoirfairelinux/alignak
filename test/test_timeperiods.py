@@ -56,6 +56,20 @@ from alignak.objects.timeperiod import Timeperiod
 
 class TestTimeperiods(AlignakTest):
 
+    def test_timeperiod_ineritance(self):
+        """Test inheritance in timeperiod is working
+        """
+        self.setup_with_file('cfg/cfg_timeperiod_inheritance.cfg')
+        self._sched = self.schedulers['scheduler-master'].sched
+        tp = self._sched.timeperiods.find_by_name("24x77")
+
+        got_sunday = False
+        for dr in tp.dateranges:
+            if hasattr(dr, 'day') and dr.day == 'sunday':
+                got_sunday = True
+                break
+        assert got_sunday
+
     def test_timeperiod_no_daterange(self):
         """
         Test with a timeperiod have no daterange
