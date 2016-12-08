@@ -43,38 +43,39 @@
 #  You should have received a copy of the GNU Affero General Public License
 #  along with Shinken.  If not, see <http://www.gnu.org/licenses/>.
 
-#
-# This file is used to test reading and processing of config files
-#
-
-from alignak_test import *
+import unittest
+from alignak_test import AlignakTest
 
 
-class TestStarInGroups(AlignakTest):
+class TestStarMemberGroup(AlignakTest):
     def setUp(self):
-        self.setup_with_file(['etc/alignak_star_in_hostgroups.cfg'])
+        self.setup_with_file('cfg/cfg_star_in_group_members.cfg')
+        self._sched = self.schedulers['scheduler-master'].sched
 
-    # If we reach a good start, we are ok :)
-    # the bug was that an * hostgroup expand get all host_name != ''
-    # without looking at register 0 or not
-    def test_star_in_groups(self):
-        #
-        # Config is not correct because of a wrong relative path
-        # in the main config file
-        #
-        print "Get the hosts and services"
-        now = time.time()
-        host = self.sched.hosts.find_by_name("test_host_0")
-        host.checks_in_progress = []
-        host.act_depend_of = []  # ignore the router
-        router = self.sched.hosts.find_by_name("test_router_0")
-        router.checks_in_progress = []
-        router.act_depend_of = []  # ignore the router
-        svc = self.sched.services.find_srv_by_name_and_hostname("test_host_0", "TEST")
-        self.assertIsNot(svc, None)
+    def test_star_in_group_member(self):
+        """Test hostgroup with wildcard members and service with wildcard hostname
+        """
+        hg = self._sched.conf.hostgroups.find_by_name('ping-servers')
 
-        svc = self.sched.services.find_srv_by_name_and_hostname("test_host_0", "TEST_HNAME_STAR")
-        self.assertIsNot(svc, None)
+        assert hg is not None
+
+        host_0 = self._sched.conf.hosts.find_by_name('test_host_0')
+        router_0 = self._sched.conf.hosts.find_by_name('test_router_0')
+
+        # host0 and router0 should be in ping-servers members
+        assert host_0.uuid in hg.members
+        assert router_0.uuid in hg.members
+
+        svc_ping = self._sched.conf.services.find_srv_by_name_and_hostname('test_host_0', 'PING')
+        assert svc_ping is not None
+
+        # TEST service should be linked to host0
+        svc_test = self._sched.services.find_srv_by_name_and_hostname("test_host_0", "TEST")
+        assert svc_test is not None
+
+        # TEST_HNAME_STAR service should be linked to host0
+        svc_star = self._sched.services.find_srv_by_name_and_hostname("test_host_0", "TEST_HNAME_STAR")
+        assert svc_star is not None
 
 
 if __name__ == '__main__':
