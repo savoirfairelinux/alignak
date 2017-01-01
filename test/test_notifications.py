@@ -161,26 +161,26 @@ class TestNotifications(AlignakTest):
 
         self.scheduler_loop(1, [[host, 0, 'UP'], [svc, 0, 'OK']])
         time.sleep(0.1)
-        assert 0 == svc.current_notification_number, 'All OK no notifications'
+        assert svc.current_notification_number == 0, 'All OK no notifications'
         self.assert_actions_count(0)
 
         self.scheduler_loop(1, [[svc, 2, 'CRITICAL']])
         time.sleep(0.1)
         assert "SOFT" == svc.state_type
-        assert 0 == svc.current_notification_number, 'Critical SOFT, no notifications'
+        assert svc.current_notification_number == 0, 'Critical SOFT, no notifications'
         self.assert_actions_count(0)
 
         self.scheduler_loop(1, [[svc, 2, 'CRITICAL']])
         time.sleep(0.1)
         assert "HARD" == svc.state_type
-        assert 1 == svc.current_notification_number, 'Critical HARD, must have 1 ' \
+        assert svc.current_notification_number == 1, 'Critical HARD, must have 1 ' \
                                                              'notification'
         self.assert_actions_count(2)
 
         self.scheduler_loop(1, [[svc, 2, 'CRITICAL']])
         time.sleep(0.1)
-        assert svc.current_notification_number == 2
         self.assert_actions_count(3)
+        assert svc.current_notification_number == 2
 
         self.scheduler_loop(1, [[svc, 2, 'CRITICAL']])
         time.sleep(0.1)
@@ -204,7 +204,7 @@ class TestNotifications(AlignakTest):
 
         self.scheduler_loop(1, [[svc, 0, 'OK']])
         time.sleep(0.1)
-        assert 0 == svc.current_notification_number
+        assert svc.current_notification_number == 0
         self.assert_actions_count(5)
 
     def test_3_notifications(self):
