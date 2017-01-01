@@ -199,13 +199,14 @@ class TestNotifications(AlignakTest):
         cmd = "[%lu] ENABLE_CONTACT_SVC_NOTIFICATIONS;test_contact" % now
         self.schedulers['scheduler-master'].sched.run_external_command(cmd)
         self.scheduler_loop(1, [[svc, 2, 'CRITICAL']])
+        time.sleep(0.1)
         assert svc.current_notification_number == 4
         self.assert_actions_count(5)
 
         self.scheduler_loop(1, [[svc, 0, 'OK']])
         time.sleep(0.1)
         assert svc.current_notification_number == 0
-        self.assert_actions_count(5)
+        self.assert_actions_count(6)
 
     def test_3_notifications(self):
         """ Test notifications of service states OK -> WARNING -> CRITICAL -> OK
