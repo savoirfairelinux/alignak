@@ -2,7 +2,7 @@
 Presentation of the Alignak project
 ===================================
 
-Welcome to the Alignak project.
+*Alignak project - modern Nagios compatible monitoring framework*
 
 .. image:: https://api.travis-ci.org/Alignak-monitoring/alignak.svg?branch=develop
     :target: https://travis-ci.org/Alignak-monitoring/alignak
@@ -25,7 +25,7 @@ Welcome to the Alignak project.
     :alt: License AGPL v3
 
 
-Alignak project is a monitoring framweork based on Shinken which tends to follow OpenStack standards and integrates with it.
+Alignak is a monitoring framework based on Shinken which tends to follow OpenStack standards and integrates with it.
 Its main goal is to give users a flexible architecture for their monitoring system that is designed to scale to large environments.
 
 Alignak is backwards-compatible with the Nagios configuration standard and plugins. It works on any operating system and architecture that supports Python, which includes Windows, GNU/Linux and FreeBSD.
