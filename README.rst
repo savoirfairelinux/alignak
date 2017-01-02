@@ -5,30 +5,37 @@ Presentation of the Alignak project
 Welcome to the Alignak project.
 
 .. image:: https://api.travis-ci.org/Alignak-monitoring/alignak.svg?branch=develop
-  :target: https://travis-ci.org/Alignak-monitoring/alignak
+    :target: https://travis-ci.org/Alignak-monitoring/alignak
+    :alt: Develop branch build status
+
 .. image:: https://landscape.io/github/Alignak-monitoring/alignak/develop/landscape.svg?style=flat
-  :target: https://landscape.io/github/Alignak-monitoring/alignak/develop
+    :target: https://landscape.io/github/Alignak-monitoring/alignak/develop
+    :alt: Development code static analysis
+
 .. image:: https://coveralls.io/repos/Alignak-monitoring/alignak/badge.svg?branch=develop
-  :target: https://coveralls.io/r/Alignak-monitoring/alignak
+    :target: https://coveralls.io/r/Alignak-monitoring/alignak
+    :alt: Development code tests coverage
+
 .. image:: https://badges.gitter.im/Join%20Chat.svg
-   :alt: Join the chat at https://gitter.im/Alignak-monitoring/alignak
-   :target: https://gitter.im/Alignak-monitoring/alignak?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+    :target: https://gitter.im/Alignak-monitoring/alignak?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+    :alt: Join the chat at https://gitter.im/Alignak-monitoring/alignak
+
+.. image:: https://img.shields.io/badge/License-AGPL%20v3-blue.svg
+    :target: http://www.gnu.org/licenses/agpl-3.0
+    :alt: License AGPL v3
 
 
-Alignak project is a monitoring framwork based on Shinken who tend to follow OpenStack standards and integrate with it.
-Its main goal is to give users a flexible architecture for  their monitoring system that is designed to scale to large environments.
+Alignak project is a monitoring framweork based on Shinken which tends to follow OpenStack standards and integrates with it.
+Its main goal is to give users a flexible architecture for their monitoring system that is designed to scale to large environments.
 
-Alignak is backwards-compatible with the Nagios configuration standard
-and plugins. It works on any operating system and architecture that
-supports Python, which includes Windows, GNU/Linux and FreeBSD.
+Alignak is backwards-compatible with the Nagios configuration standard and plugins. It works on any operating system and architecture that supports Python, which includes Windows, GNU/Linux and FreeBSD.
 
-Alignak is licensed under the Gnu Affero General Public Licence version 3 (AGPLv3).
-Unless specified by another header, this licence apply to all files in this repository 
+Alignak is licensed under the Gnu Affero General Public Licence version 3 (AGPLv3). Unless specified by another header, this licence apply to all files in this repository
 
 Requirements
 ============
 
-See the requirement file in the repository's root
+See the requirements file in the repository's root
 
 
 Installing Alignak
