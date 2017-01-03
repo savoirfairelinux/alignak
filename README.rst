@@ -28,6 +28,10 @@ Presentation of the Alignak project
     :target: https://gitter.im/Alignak-monitoring/alignak?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
     :alt: Join the chat at https://gitter.im/Alignak-monitoring/alignak
 
+.. image:: https://img.shields.io/badge/IRC-%23alignak-1e72ff.svg?style=flat
+    :target: http://webchat.freenode.net/?channels=%23alignak
+    :alt: Join the chat #alignak on freenode.net
+
 .. image:: https://img.shields.io/badge/License-AGPL%20v3-blue.svg
     :target: http://www.gnu.org/licenses/agpl-3.0
     :alt: License AGPL v3
