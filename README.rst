@@ -21,8 +21,8 @@ Presentation of the Alignak project
     :alt: Lastest documentation Status
 
 .. image:: https://readthedocs.org/projects/alignak-doc/badge/?version=develop
-    :target: http://alignak-doc.readthedocs.org/en/develop/?badge=develop
-    :alt: Development documentation Status
+    :target: http://alignak-doc.readthedocs.org/en/update/?badge=update
+    :alt: Update processing documentation Status
 
 .. image:: https://img.shields.io/badge/IRC-%23alignak-1e72ff.svg?style=flat
     :target: http://webchat.freenode.net/?channels=%23alignak
