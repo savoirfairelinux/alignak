@@ -16,6 +16,14 @@ Presentation of the Alignak project
     :target: https://coveralls.io/r/Alignak-monitoring/alignak
     :alt: Development code tests coverage
 
+.. image:: https://readthedocs.org/projects/alignak-doc/badge/?version=latest
+    :target: http://alignak-backend-client.readthedocs.org/en/latest/?badge=latest
+    :alt: Lastest documentation Status
+
+.. image:: https://readthedocs.org/projects/alignak-doc/badge/?version=develop
+    :target: http://alignak-doc.readthedocs.org/en/develop/?badge=develop
+    :alt: Development documentation Status
+
 .. image:: https://badges.gitter.im/Join%20Chat.svg
     :target: https://gitter.im/Alignak-monitoring/alignak?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
     :alt: Join the chat at https://gitter.im/Alignak-monitoring/alignak
@@ -35,6 +43,14 @@ Alignak is licensed under the Gnu Affero General Public Licence version 3 (AGPLv
 
 .. note: Windows is not yet supported.
 
+Documentation
+-------------
+
+Alignak project has `an online documentation page <http://alignak-monitoring.github.io/documentation/>`_. We try to have as much documentation as possible and to keep this documentation simple and understandable. For sure the documentation is not yet complete, but you can help us ;)
+
+Click on one of the docs badges on this page to browse the documentation.
+
+
 Requirements
 ------------
 
@@ -44,8 +60,6 @@ See the requirements file in the repository's root
 Installing Alignak
 ------------------
 
-See the `Documentation`_
-
-.. _Documentation: https://alignak-doc.readthedocs.org/en/latest/02_installation/index.html
+See the `installation documentation <https://alignak-doc.readthedocs.org/en/latest/02_installation/index.html>`_.
 
 
