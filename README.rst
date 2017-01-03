@@ -24,10 +24,6 @@ Presentation of the Alignak project
     :target: http://alignak-doc.readthedocs.org/en/develop/?badge=develop
     :alt: Development documentation Status
 
-.. image:: https://badges.gitter.im/Join%20Chat.svg
-    :target: https://gitter.im/Alignak-monitoring/alignak?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-    :alt: Join the chat at https://gitter.im/Alignak-monitoring/alignak
-
 .. image:: https://img.shields.io/badge/IRC-%23alignak-1e72ff.svg?style=flat
     :target: http://webchat.freenode.net/?channels=%23alignak
     :alt: Join the chat #alignak on freenode.net
