@@ -35,7 +35,7 @@ id -Gn alignak |grep -E '(^|[[:blank:]])nagios($|[[:blank:]])' >/dev/null ||
     adduser alignak nagios
 
 ## Create directories with proper permissions
-for i in /usr/local/var/run/alignak /usr/local/var/log/alignak /usr/local/var/lib/alignak /usr/local/var/libexec/alignak
+for i in /usr/local/etc/alignak /usr/local/var/run/alignak /usr/local/var/log/alignak /usr/local/var/lib/alignak /usr/local/var/libexec/alignak
 do
     mkdir -p $i
     echo "Setting 'alignak' ownership on: $i"
